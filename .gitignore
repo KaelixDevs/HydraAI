@@ -1,0 +1,13 @@
+**/bin/
+**/obj/
+/artifacts/
+.vs/
+__pycache__/
+*.pyc
+*.gguf
+*.safetensors
+*.pt
+*.db*
+.venv/
+data/
+*.partial

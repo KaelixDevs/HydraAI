@@ -1,0 +1,2 @@
+# Optional research environment. Pin an exact reviewed build in production experiments.
+torch>=2.6,<3

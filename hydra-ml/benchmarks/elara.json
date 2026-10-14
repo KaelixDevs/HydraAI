@@ -1,0 +1,19 @@
+{
+  "profile": "hydra-elara",
+  "status": "specification_not_run",
+  "metrics": [
+    "math",
+    "instruction_following",
+    "long_context",
+    "tool_use"
+  ],
+  "required_provenance": [
+    "model_sha256",
+    "dataset_version",
+    "hardware",
+    "runtime_version",
+    "methodology",
+    "raw_results"
+  ],
+  "results": null
+}

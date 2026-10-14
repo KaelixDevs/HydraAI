@@ -1,0 +1,41 @@
+<Window x:Class="Hydra.Desktop.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Hydra AI" Width="1280" Height="850" MinWidth="1020" MinHeight="700" Background="#101116" Foreground="#E9E9F2" FontFamily="Segoe UI" WindowStartupLocation="CenterScreen" AllowDrop="True" Drop="OnDrop">
+ <Grid>
+  <Grid.ColumnDefinitions><ColumnDefinition Width="224"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+  <Border Background="#15161D" BorderBrush="#292A33" BorderThickness="0,0,1,0">
+   <DockPanel Margin="18,24,18,18">
+    <StackPanel DockPanel.Dock="Top">
+     <StackPanel Orientation="Horizontal" Margin="8,0,0,30">
+      <Viewbox Width="34" Height="34" Margin="0,0,11,0"><Canvas Width="40" Height="40"><Path Stroke="#AA8EFF" StrokeThickness="4" StrokeLineJoin="Round" Data="M 7,32 L 7,9 L 14,4 L 20,12 L 26,4 L 33,9 L 33,32 M 7,22 L 20,30 L 33,22 M 20,12 L 20,30"/></Canvas></Viewbox>
+      <StackPanel><TextBlock Text="HYDRA" FontWeight="Bold" FontSize="21"/><TextBlock Text="ONE INTELLIGENCE. MANY MINDS." FontSize="6.8" Foreground="#9293A7" Margin="0,2,0,0"/></StackPanel>
+     </StackPanel>
+     <Button Content="＋   New conversation" Click="NewChatClick" Background="#7860C9" BorderBrush="#9F87ED" Margin="0,0,0,22"/>
+     <TextBlock Text="WORKSPACE" FontSize="10" Foreground="#73768B" Margin="14,0,0,7"/>
+     <Button Style="{StaticResource Nav}" Content="◌     Chats" Tag="Chats" Click="NavigateClick"/>
+     <Button Style="{StaticResource Nav}" Content="◇     Models" Tag="Models" Click="NavigateClick"/>
+     <Button Style="{StaticResource Nav}" Content="▱     Projects" Tag="Projects" Click="NavigateClick"/>
+     <Button Style="{StaticResource Nav}" Content="⌕     Research" Tag="Research" Click="NavigateClick"/>
+     <Button Style="{StaticResource Nav}" Content="▤     Files" Tag="Files" Click="NavigateClick"/>
+     <Separator/>
+     <TextBlock Text="PLATFORM" FontSize="10" Foreground="#73768B" Margin="14,0,0,7"/>
+     <Button Style="{StaticResource Nav}" Content="↓     Model Manager" Tag="Model Manager" Click="NavigateClick"/>
+     <Button Style="{StaticResource Nav}" Content="▥     Benchmarks" Tag="Benchmarks" Click="NavigateClick"/>
+     <Button Style="{StaticResource Nav}" Content="⚙     Settings" Tag="Settings" Click="NavigateClick"/>
+     <Button Style="{StaticResource Nav}" Content="○     Account" Tag="Account" Click="NavigateClick"/>
+    </StackPanel>
+    <StackPanel DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+     <Border Background="#20232B" CornerRadius="8" Padding="12" Margin="0,0,0,14"><StackPanel><TextBlock Text="●  Local workspace" Foreground="#86C7B0" FontSize="12"/><TextBlock Text="Your data stays with you." Foreground="#9396A7" FontSize="11" Margin="0,5,0,0"/></StackPanel></Border>
+     <TextBlock Text="LOCAL USER" FontSize="11" Margin="12,0,0,4"/><TextBlock Text="Hydra AI  /  0.1.1 development" FontSize="10" Foreground="#727588" Margin="12,0,0,0"/>
+    </StackPanel>
+    <Grid/>
+   </DockPanel>
+  </Border>
+  <Grid Grid.Column="1">
+   <Grid.RowDefinitions><RowDefinition Height="70"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+   <Border BorderBrush="#292A33" BorderThickness="0,0,0,1" Padding="30,0">
+    <DockPanel VerticalAlignment="Center"><TextBlock x:Name="PageTitle" Text="Workspace" FontSize="15" FontWeight="SemiBold"/><StackPanel Orientation="Horizontal" HorizontalAlignment="Right"><TextBlock Text="●" Foreground="#8B75D0" VerticalAlignment="Center" Margin="0,0,8,0"/><TextBlock x:Name="EngineStatus" Text="No model loaded" FontSize="12" Foreground="#9698AB" VerticalAlignment="Center"/></StackPanel></DockPanel>
+   </Border>
+   <ContentControl x:Name="PageHost" Grid.Row="1"/>
+   <Border Grid.Row="2" BorderBrush="#292A33" BorderThickness="0,1,0,0" Padding="24,9"><TextBlock x:Name="StatusText" Text="Local-first. No telemetry. No Hydra-trained weights installed." FontSize="11" Foreground="#9396AA"/></Border>
+  </Grid>
+ </Grid>
+</Window>

@@ -1,0 +1,19 @@
+{
+  "profile": "hydra-veyra",
+  "status": "specification_not_run",
+  "metrics": [
+    "citation_accuracy",
+    "source_quality",
+    "contradictions",
+    "current_information"
+  ],
+  "required_provenance": [
+    "model_sha256",
+    "dataset_version",
+    "hardware",
+    "runtime_version",
+    "methodology",
+    "raw_results"
+  ],
+  "results": null
+}

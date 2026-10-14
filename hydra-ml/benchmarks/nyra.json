@@ -1,0 +1,19 @@
+{
+  "profile": "hydra-nyra",
+  "status": "specification_not_run",
+  "metrics": [
+    "mesh_validity",
+    "topology",
+    "prompt_alignment",
+    "export_compatibility"
+  ],
+  "required_provenance": [
+    "model_sha256",
+    "dataset_version",
+    "hardware",
+    "runtime_version",
+    "methodology",
+    "raw_results"
+  ],
+  "results": null
+}

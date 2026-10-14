@@ -1,0 +1,19 @@
+{
+  "profile": "hydra-kairo",
+  "status": "specification_not_run",
+  "metrics": [
+    "compilation",
+    "test_pass_rate",
+    "secure_coding",
+    "repository_tasks"
+  ],
+  "required_provenance": [
+    "model_sha256",
+    "dataset_version",
+    "hardware",
+    "runtime_version",
+    "methodology",
+    "raw_results"
+  ],
+  "results": null
+}

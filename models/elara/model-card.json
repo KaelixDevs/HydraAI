@@ -1,0 +1,18 @@
+{
+  "model_id": "hydra-elara",
+  "display_name": "Hydra Elara",
+  "version": "0.1-development",
+  "status": "profile_only_no_hydra_weights",
+  "purpose": "General intelligence",
+  "target_capabilities": [
+    "text",
+    "reasoning",
+    "planning"
+  ],
+  "weight_path": null,
+  "parameter_count": null,
+  "benchmark_results": null,
+  "training_data": null,
+  "tool_permissions": [],
+  "development_backends_must_retain_upstream_identity": true
+}

@@ -1,0 +1,18 @@
+{
+  "profile": "hydra-zerin",
+  "status": "specification_not_run",
+  "metrics": [
+    "coherence",
+    "variety",
+    "instruction_following"
+  ],
+  "required_provenance": [
+    "model_sha256",
+    "dataset_version",
+    "hardware",
+    "runtime_version",
+    "methodology",
+    "raw_results"
+  ],
+  "results": null
+}

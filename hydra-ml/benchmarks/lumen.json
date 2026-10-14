@@ -1,0 +1,18 @@
+{
+  "profile": "hydra-lumen",
+  "status": "specification_not_run",
+  "metrics": [
+    "correctness",
+    "explanation_quality",
+    "learner_adaptation"
+  ],
+  "required_provenance": [
+    "model_sha256",
+    "dataset_version",
+    "hardware",
+    "runtime_version",
+    "methodology",
+    "raw_results"
+  ],
+  "results": null
+}
