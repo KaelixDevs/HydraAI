@@ -1,6 +1,12 @@
 # Hydra AI architecture
 
-Version: 0.1.1. Model weights are distributed separately from source.
+Version: 0.2.0 platform expansion. Model weights are distributed separately from source.
+
+`apps/linux` is a native Avalonia client sharing the .NET domain library. SQLite resolves to `libsqlite3.so.0` on Linux and `winsqlite3.dll` on Windows; workspace boundaries use OS-appropriate path case rules. Linux packages contain a self-contained .NET runtime, CPU llama-server and verified starter GGUF. X11 is the default display backend.
+
+`apps/android` is a native Java client with a C++ JNI wrapper around statically linked llama.cpp. There is no HTTP server or internet permission. One background executor owns model imports, load and generation. A process-scoped Application object retains state across activity recreation; the main thread owns visible conversations. Native cancellation uses an atomic flag and a decode abort callback. UTF-8 bytes cross JNI to preserve emoji. Context is limited before decoding and output is bounded. Android's system file picker provides import, export and backup access without broad storage permission.
+
+Desktop and mobile share upstream model/runtime versions but have separate storage and presentation implementations. Platform feature differences are listed in `docs/PLATFORMS.md`; Windows-only workspace and binary export controls are not claimed on the new clients.
 
 ## Boundaries
 

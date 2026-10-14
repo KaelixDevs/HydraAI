@@ -1,4 +1,15 @@
-# Validation — 0.1.1 development
+# Validation — platform preview 0.2.0
+
+## Platform expansion checks, 2026-10-14
+
+- Core regression suite: 23/23 passed on Windows after the SQLite resolver, Linux RAM detection and path case-sensitivity changes. A Linux-only sibling-directory confinement regression is included for CI.
+- Native Linux client compiled and published self-contained for linux-x64. Headless rendering exercised Chat, Chats, Models, Files and Settings, a 420-pixel layout and the missing-backend guard. Screenshots were inspected. The Linux binary was not launched on a Linux desktop here.
+- Actual RPM, Arch pacman archive, checksum-verifying setup script and portable Linux archive were generated. Packaging checks cover metadata, ELF executable permissions, required runtime/model assets and dependency notices.
+- Android ARM64 llama.cpp/JNI library and Java classes compiled. The APK uses compiled resources, DEX, its ARM64 library and the verified starter GGUF. APK signing verification and 16 KB ZIP alignment passed. Android lint passed with zero errors and one warning for missing x86_64 ChromeOS support; the release targets ARM64 Android phones/tablets.
+- The Windows AAPT2 ZIP writer crashed even on a minimal manifest. Directory output succeeded, so release assembly used the documented directory-packaging fallback. A later Java compiler cleanup step reported AccessDeniedException closing SDK JARs after emitting the classes. The final lint run used those freshly compiled classes while skipping the failing compile cleanup task and AAPT2 ZIP task. This is not a clean end-to-end Gradle assemble result; the normal build path remains in CI and the build script.
+- No physical Android device/emulator installation, on-phone inference benchmark, Arch/Fedora clean installation or Linux graphical-session test was performed here. Cross-platform CI was added but has not been run remotely for these changes. NuGet vulnerability lookup was unavailable in this environment, so local cached-package builds disabled that lookup; CI retains its default audit behavior.
+
+## Previous Windows 0.1.1 validation
 
 Development validation performed on this Windows x64 machine. These results do not constitute a security audit, cross-hardware certification, or AI benchmark.
 

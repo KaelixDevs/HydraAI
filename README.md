@@ -2,7 +2,9 @@
 
 **One Intelligence. Many Minds.**
 
-A free, open-source, local-first AI platform for Windows. Version 0.1.1 includes local chat, specialist profiles, file exports and backups. It runs third-party GGUF models; independently trained Hydra weights remain in development.
+A free, open-source, local-first AI platform for Windows, Linux and Android. Version 0.2.0 adds a native Linux client, Arch/RPM packages and an Android app with on-device inference. It runs third-party GGUF models; independently trained Hydra weights remain in development.
+
+**New downloads:** [Linux and Android installation guide](docs/PLATFORMS.md). Android runs models on the phone without a server or internet permission. Windows users can continue using the 0.1.1 installer.
 
 ## Hydra models
 
@@ -18,6 +20,8 @@ A free, open-source, local-first AI platform for Windows. Version 0.1.1 includes
 Hydra Auto uses transparent keyword rules, not a trained router. Text profiles can use explicitly named third-party GGUF development backends. They are never presented as Hydra weights. Nyra can help produce mesh specifications for local export. Independently trained native 3D generation remains planned.
 
 ## Installation
+
+The instructions below describe Windows. See the [platform guide](docs/PLATFORMS.md) for Linux and Android installation and feature differences.
 
 Use `HydraAI-Setup.exe` when provided with a release, or extract the portable build and open `HydraAI.exe`. Continue locally without an account. No developer tools are required for a runtime-bundled build.
 

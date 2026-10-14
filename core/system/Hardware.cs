@@ -9,6 +9,11 @@ public static class Hardware
     {
         var memory = new Memory { Length = (uint)Marshal.SizeOf<Memory>() };
         var ram = OperatingSystem.IsWindows() && GlobalMemoryStatusEx(ref memory) ? memory.TotalPhysical : 0;
+        if (OperatingSystem.IsLinux() && File.Exists("/proc/meminfo"))
+        {
+            var total = File.ReadLines("/proc/meminfo").FirstOrDefault(l => l.StartsWith("MemTotal:", StringComparison.Ordinal));
+            if (total is not null && ulong.TryParse(total.Split(' ', StringSplitOptions.RemoveEmptyEntries)[1], out var kib)) ram = kib * 1024;
+        }
         var gib = ram / (1024UL * 1024 * 1024);
         var profile = gib switch { < 8 => "Low", < 24 => "Balanced", < 48 => "High", _ => "Ultra" };
         return new(Environment.OSVersion.VersionString, RuntimeInformation.OSArchitecture.ToString(), Environment.ProcessorCount, ram, profile,

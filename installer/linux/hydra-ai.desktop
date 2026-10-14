@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Hydra AI
+Comment=Local AI workspace
+Exec=/usr/share/hydra-ai/hydra-ai
+Icon=hydra-ai
+Categories=Utility;Development;
+Terminal=false
+StartupWMClass=hydra-ai

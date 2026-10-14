@@ -37,3 +37,62 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m unittest discover -s hydra-ml/tests -v
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Linux libraries and package tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libsqlite3-0 libice6 libsm6 libfontconfig1 libx11-6
+          python -m pip install zstandard
+      - run: dotnet run --project tests/Hydra.Tests.csproj -c Release
+      - run: dotnet run --project apps/linux-smoke/Hydra.Linux.Smoke.csproj -c Release -- artifacts/linux-smoke
+      - run: bash scripts/build-linux.sh
+      - name: Real Linux inference
+        env:
+          HYDRA_LLAMA_RUNTIME: ${{ github.workspace }}/artifacts/linux-x64/runtime/llama-server
+          HYDRA_TEST_MODEL: ${{ github.workspace }}/artifacts/linux-x64/development/SmolLM2-135M-Instruct-Q4_K_M.gguf
+        run: dotnet run --project tests/Hydra.Tests.csproj -c Release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hydra-linux-preview
+          path: artifacts/releases/*
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.13'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare Android toolchain and verified inputs
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-36" "build-tools;35.0.0" "build-tools;36.0.0" "ndk;28.2.13676358" "cmake;3.22.1"
+          python scripts/fetch-platform-assets.py --android-assets artifacts/android-starter --llama-source artifacts/llama.cpp-b11429
+          mkdir -p apps/android/app/build/generated/starter
+          cp artifacts/android-starter/SmolLM2-135M-Instruct-Q4_K_M.gguf apps/android/app/build/generated/starter/starter.gguf
+          cp artifacts/android-starter/*.md artifacts/android-starter/*.txt LICENSE THIRD_PARTY.md apps/android/app/build/generated/starter/
+          cp artifacts/llama.cpp-b11429/LICENSE apps/android/app/build/generated/starter/LICENSE-llama.cpp.txt
+          cp "$ANDROID_HOME/ndk/28.2.13676358/NOTICE" apps/android/app/build/generated/starter/NOTICE-Android-NDK.txt
+          cp "$ANDROID_HOME/ndk/28.2.13676358/NOTICE.toolchain" apps/android/app/build/generated/starter/NOTICE-Android-toolchain.txt
+      - name: Compile ARM64 inference, package and lint
+        run: gradle -p apps/android -PllamaDir="$GITHUB_WORKSPACE/artifacts/llama.cpp-b11429" assembleRelease lintRelease
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hydra-android-unsigned-preview
+          path: |
+            apps/android/app/build/outputs/apk/release/*.apk
+            apps/android/app/build/reports/lint-results-release.*

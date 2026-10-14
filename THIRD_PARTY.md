@@ -1,8 +1,15 @@
 # Third-party software
 
+Linux runtime archive: `llama-b11429-bin-ubuntu-x64.tar.gz`, SHA-256 `f6d25dde8f51133143d1453da4fd5f73b145127177612a283bf7995957af3392`. Android builds llama.cpp b11429 from its source ZIP, SHA-256 `2c14039274aaf94ad0e4cbdeb575b32cc3d75c3b8bae28b052c9ff9c20ffea46`. Both use the same named starter model below. APK assets retain the upstream model card and licenses. Linux packages retain .NET, Avalonia, SkiaSharp/HarfBuzzSharp and inference runtime notices.
+
 | Component | License / distribution |
 | --- | --- |
 | .NET / WPF | MIT; runtime notices retained in packaged distribution |
+| Avalonia 12.1.4 | MIT; native Linux UI, license retained in Linux packages |
+| SkiaSharp / HarfBuzzSharp | MIT wrappers with upstream components; notices retained in Linux packages |
+| Linux SQLite (`libsqlite3.so.0`) | System dependency; SQLite public domain upstream |
+| Android SDK / NDK / Gradle | Build tools under their respective licenses; Android framework provided by the device |
+| Packaging.Targets | MIT; build-time Linux package writer |
 | Windows SQLite (`winsqlite3.dll`) | OS component, not redistributed by this project; SQLite public domain upstream |
 | llama.cpp b11429 | MIT; packaged CPU development inference engine, distribution notices included in `runtime` |
 | SmolLM2-135M-Instruct / bartowski Q4_K_M | Apache-2.0; packaged third-party development weights, upstream identity retained |

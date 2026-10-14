@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType><TargetFramework>net10.0</TargetFramework><AssemblyName>hydra-ai</AssemblyName>
+    <Version>0.2.0</Version><PackageId>hydra-ai</PackageId><PackageDescription>Local AI chat, files and backups</PackageDescription>
+    <PackageProjectUrl>https://github.com/KaelixDevs/HydraAI</PackageProjectUrl><PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RpmPackageArchitecture>x86_64</RpmPackageArchitecture><LinuxExecutable>hydra-ai</LinuxExecutable>
+    <AvaloniaUseCompiledBindingsByDefault>false</AvaloniaUseCompiledBindingsByDefault>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../core/Hydra.Core.csproj" />
+    <PackageReference Include="Avalonia.Desktop" Version="12.1.4" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.4" />
+    <PackageReference Include="Packaging.Targets" Version="0.1.232" PrivateAssets="all" />
+    <RpmDependency Include="libX11" /><RpmDependency Include="libICE" /><RpmDependency Include="libSM" />
+    <RpmDependency Include="fontconfig" /><RpmDependency Include="sqlite-libs" />
+    <RpmDependency Include="glibc" /><RpmDependency Include="libstdc++" /><RpmDependency Include="libgcc" /><RpmDependency Include="libgomp" />
+    <RpmDependency Include="zlib" /><RpmDependency Include="libXcursor" /><RpmDependency Include="libXi" /><RpmDependency Include="libXrandr" /><RpmDependency Include="libxcb" /><RpmDependency Include="libglvnd-glx" />
+    <Content Include="../../installer/linux/hydra-ai.desktop" Link="hydra-ai.desktop" CopyToPublishDirectory="PreserveNewest" LinuxPath="/usr/share/applications/hydra-ai.desktop" />
+    <Content Include="../desktop/assets/hydra-mark.svg" Link="hydra-ai.svg" CopyToPublishDirectory="PreserveNewest" LinuxPath="/usr/share/icons/hicolor/scalable/apps/hydra-ai.svg" />
+    <Content Include="../../LICENSE" Link="LICENSE" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="../../THIRD_PARTY.md" Link="THIRD_PARTY.md" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="../../PRIVACY.md" Link="PRIVACY.md" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="../../docs/PLATFORMS.md" Link="README.md" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

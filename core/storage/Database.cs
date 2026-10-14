@@ -2,9 +2,11 @@ using System.Runtime.InteropServices;
 
 namespace Hydra.Core.Storage;
 
-/// <summary>Small prepared-statement adapter over Windows' SQLite runtime.</summary>
+/// <summary>Prepared-statement adapter over the operating system's SQLite runtime.</summary>
 public sealed class Database : IDisposable
 {
+    static Database() => NativeLibrary.SetDllImportResolver(typeof(Database).Assembly, (name, assembly, search) =>
+        name == "hydra_sqlite" ? NativeLibrary.Load(OperatingSystem.IsWindows() ? "winsqlite3.dll" : "libsqlite3.so.0", assembly, search) : IntPtr.Zero);
     private IntPtr handle;
     private readonly object gate = new();
     public Database(string path)
@@ -92,7 +94,7 @@ public sealed class Database : IDisposable
     }
     private static class Native
     {
-        private const string Lib = "winsqlite3.dll";
+        private const string Lib = "hydra_sqlite";
         [DllImport(Lib, CallingConvention = CallingConvention.Cdecl)] internal static extern int sqlite3_open([MarshalAs(UnmanagedType.LPUTF8Str)] string path, out IntPtr db);
         [DllImport(Lib, CallingConvention = CallingConvention.Cdecl)] internal static extern int sqlite3_close_v2(IntPtr db);
         [DllImport(Lib, CallingConvention = CallingConvention.Cdecl)] internal static extern int sqlite3_busy_timeout(IntPtr db, int milliseconds);

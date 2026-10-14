@@ -1,5 +1,13 @@
 # Privacy
 
+## Linux and Android
+
+Linux uses the same local database and backup service as Windows, under `$XDG_DATA_HOME/HydraAI` or `~/.local/share/HydraAI` (or `HYDRA_DATA_DIR`). Android uses private app files for JSON conversations, its copied model and outputs. Android inference runs inside the application through JNI; its manifest has no internet permission. OS cloud backup and device transfer are disabled in the app's backup rules. Explicitly selected folder providers may themselves sync files to another service. Uninstalling removes private Android data; exported and backed-up copies remain.
+
+Android records the imported GGUF's file name and SHA-256; it does not verify the license of arbitrary imported weights. Users remain responsible for their model licenses. Neither mobile nor Linux data is encrypted by Hydra itself.
+
+## Windows and shared desktop behavior
+
 Hydra starts in local mode with internet features off. No telemetry or advertising SDK is included. There is no usage quota and no subscription system.
 
 Chats, messages, imported file excerpts, model metadata, projects and settings are stored locally in SQLite under `%LOCALAPPDATA%/HydraAI`. `HYDRA_DATA_DIR` can select a different directory. SQLite backups/WAL files may retain deleted content until storage is reclaimed. Deletion is not a forensic erasure guarantee.

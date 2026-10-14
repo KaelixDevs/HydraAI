@@ -1,4 +1,8 @@
-# Feature status — 0.1.1 development
+# Feature status — 0.2.0 preview
+
+Linux now has a native Avalonia client, local CPU chat, starter/imported models, source file library, Obsidian/Git backups, Arch setup/package, RPM and portable tarball. Android has a native phone/tablet UI and direct on-device CPU inference, a bundled starter, GGUF imports, local chats, source exports and folder backups. See [platform support](PLATFORMS.md) for requirements and differences. Native Linux/device installation still requires broader hardware testing.
+
+The following detailed feature matrix describes the existing Windows client:
 
 | Area | Available | Remaining |
 | --- | --- | --- |

@@ -11,3 +11,9 @@ __pycache__/
 .venv/
 data/
 *.partial
+**/build/
+**/.gradle/
+**/.cxx/
+local.properties
+*.jks
+*.keystore

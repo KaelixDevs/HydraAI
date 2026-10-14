@@ -58,6 +58,13 @@ Test("Undo protects intervening edits", () =>
     var edit = w.Write("edit.txt", "after", true); w.Write("edit.txt", "newer", true);
     Throws<IOException>(() => w.Undo(edit, true)); Assert(w.Read("edit.txt") == "newer");
 });
+if (!OperatingSystem.IsWindows()) Test("Case-sensitive workspace boundary rejects sibling directories", () =>
+{
+    var directory = Path.Combine(root, "CaseBoundary"); Directory.CreateDirectory(directory);
+    Directory.CreateDirectory(Path.Combine(root, "caseboundary"));
+    var workspace = new Workspace(directory);
+    Throws<UnauthorizedAccessException>(() => workspace.Resolve("../caseboundary/outside.txt"));
+});
 AsyncTest("Model registration records upstream identity and detects tampering", async () =>
 {
     using var db = new Database(Path.Combine(root, "models.db")); var registry = new ModelRegistry(db);

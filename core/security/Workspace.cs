@@ -19,7 +19,7 @@ public sealed class Workspace
         if (string.IsNullOrWhiteSpace(relative) || Path.IsPathRooted(relative) || relative.Contains(':'))
             throw new UnauthorizedAccessException("A project-relative path is required.");
         var path = Path.GetFullPath(Path.Combine(Root, relative));
-        if (!path.StartsWith(Root + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase))
+        if (!path.StartsWith(Root + Path.DirectorySeparatorChar, OperatingSystem.IsWindows() ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal))
             throw new UnauthorizedAccessException("The path leaves the selected project.");
         var parts = Path.GetRelativePath(Root, path).Split(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
         if (parts.Any(p => DeniedParts.Contains(p, StringComparer.OrdinalIgnoreCase) || p.StartsWith(".env", StringComparison.OrdinalIgnoreCase) ||
